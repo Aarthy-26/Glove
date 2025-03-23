@@ -1,5 +1,5 @@
 .env
 glove
 _pycache_
-requirements.txt
+
 serviceAccountKey.json
