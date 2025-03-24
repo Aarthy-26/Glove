@@ -571,19 +571,17 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import os  # Import os to use environment variables
 
-os.environ["FIREBASE_KEY_PATH"] = "D:\\Glove\\newkey.json"
+if "firebase_key" in st.secrets:
+    firebase_key = json.loads(st.secrets["firebase_key"])
+    cred = credentials.Certificate(firebase_key)
+else:
+    st.error("❌ Firebase credentials not found! Add them to Streamlit secrets.")
+    st.stop()
 
-firebase_key_path = os.getenv("FIREBASE_KEY_PATH")
-
-if not firebase_key_path:
-    raise ValueError("❌ FIREBASE_KEY_PATH is not set! Check your environment variables.")
-
-cred = credentials.Certificate(firebase_key_path)
+# 🔹 Initialize Firebase (Only once)
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
-    print("✅ Firebase Initialized Successfully!")
-
-db = firestore.client()
+    db = firestore.client()
 
 # 🔹 Custom CSS for styling
 st.markdown(    """
