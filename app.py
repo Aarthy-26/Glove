@@ -572,7 +572,8 @@ from firebase_admin import credentials, firestore
 
 # 🔹 Initialize Firebase
 if not firebase_admin._apps:
-    cred = credentials.Certificate("D:\Glove\newkey.json")
+    cred = credentials.Certificate("D:\\Glove\\newkey.json")
+
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()  # Firestore Database Client
