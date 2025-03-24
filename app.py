@@ -569,14 +569,21 @@ import streamlit as st
 import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
+import os  # Import os to use environment variables
 
-# 🔹 Initialize Firebase
+os.environ["FIREBASE_KEY_PATH"] = "D:\\Glove\\newkey.json"
+
+firebase_key_path = os.getenv("FIREBASE_KEY_PATH")
+
+if not firebase_key_path:
+    raise ValueError("❌ FIREBASE_KEY_PATH is not set! Check your environment variables.")
+
+cred = credentials.Certificate(firebase_key_path)
 if not firebase_admin._apps:
-    cred = credentials.Certificate("D:\Glove\glove\newkey.json")
-
     firebase_admin.initialize_app(cred)
+    print("✅ Firebase Initialized Successfully!")
 
-db = firestore.client()  # Firestore Database Client
+db = firestore.client()
 
 # 🔹 Custom CSS for styling
 st.markdown(    """
