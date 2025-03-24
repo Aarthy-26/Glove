@@ -1,5 +1,4 @@
 .env
 glove
-_pycache_
-
-serviceAccountKey.json
+__pycache__
+newkey.json
