@@ -570,6 +570,7 @@ import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
 import os  # Import os to use environment variables
+import json
 
 if "firebase_key" in st.secrets:
     firebase_key = json.loads(st.secrets["firebase_key"])
